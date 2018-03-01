@@ -3,6 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
+const cors = require('cors')
 
 const authRoutes = require('./routes/auth-routes')
 const profileRoutes = require('./routes/profile-routes')
@@ -19,6 +20,24 @@ app.use(cookieSession({
   maxAge: 24*60*60*1000,
   keys: [process.env.SESSION_COOKIE_KEY]
 }))
+
+// setup CORS
+
+const allowedOrigins = ['http://localhost:3000']
+
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // initialize passport
 app.use(passport.initialize())

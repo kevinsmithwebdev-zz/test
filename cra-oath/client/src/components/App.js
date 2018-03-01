@@ -9,6 +9,25 @@ import Logout from './auth/Logout/Logout'
 import './App.css';
 
 class App extends Component {
+
+  componentWillMount() {
+    console.log('App - CWM')
+    fetch('http://localhost:8080/auth/check')
+    .then((resp) => {
+      console.log(resp)
+      console.log(resp.headers.get('Content-Type'))
+      return resp.json()
+    })
+    .then(function(data) {
+      console.log('JSON return...')
+      console.log(data)
+    })
+
+
+
+
+  }
+
   render() {
     return (
       <Router>
