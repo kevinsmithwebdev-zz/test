@@ -6,8 +6,6 @@ const logger = require('morgan')
 const express = require('express')
 const cors = require('cors')
 const expressSession = require('express-session')
-const cookieSession = require('cookie-session')
-const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 const mongoose = require('mongoose')
@@ -25,7 +23,7 @@ const auth = require('./routes/api/auth')
 
 mongoose.connect(process.env.MONGODB, { useMongoClient: true }, (err) => {
   if (err) {
-    console.error("### Failed to load mongod db", process.env.MONGODB, "\n\n")
+    console.error("\n\n### Failed to load mongod db", process.env.MONGODB, "\n\n")
     console.error(err)
     process.exit(1)
   } else
@@ -39,29 +37,13 @@ mongoose.Promise = global.Promise
 const app = express()
 
 app.use(cors())
-//
-// app.set('trust proxy', 1)
-//
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['key1', 'key2']
-// }))
 
-// app.use(session({
-//   secret: 'my cats name again',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     httpOnly: false, // key
-//     maxAge: null
-//   }
-// }))
 
 app.use(function(req, res, next) {
      res.header('Access-Control-Allow-Origin', req.headers.origin);
      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
      next();
-});  
+});
 
 
 
@@ -71,12 +53,11 @@ app.use(function(req, res, next) {
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(expressSession({
   secret: 'asdfasdfasdf',
   resave: false,
-  saveUninitialized: true,
-  cookie: { path: '/', httpOnly: true, maxAge: 30 * 30000 }
+  saveUninitialized: true
 }))
 app.use(passport.initialize());
 app.use(passport.session());

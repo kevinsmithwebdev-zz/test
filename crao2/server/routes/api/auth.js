@@ -58,15 +58,20 @@ router.get('/logout', (req, res) => {
 
 // POST to /login
 router.post('/login', async (req, res) => {
+  console.log('here1')
   const query = User.findOne({ email: req.body.email });
   const foundUser = await query.exec();
+
 
   // if they exist, they'll have a username, so add that to our body
   if (foundUser) { req.body.username = foundUser.username; }
 
+  console.log('here2')
   passport.authenticate('local')(req, res, () => {
     // If logged in, we should have user info to send back
+    console.log('here3')
     if (req.user) {
+      console.log('here4')
       req.session.user = req.user
       req.cookie.user = req.user
       console.log('\n\n**************** login post\n\n')
@@ -76,6 +81,7 @@ router.post('/login', async (req, res) => {
       return res.send(JSON.stringify(stripSecret(req.user)));
     }
 
+    console.log('here5')
     // Otherwise return an error
     return res.send(JSON.stringify({ error: 'There was an error logging in' }));
   });

@@ -1,3 +1,8 @@
+// ***************************************
+// ***************************************
+// ***************************************
+// QUESTIONS
+
 let qObj = {
   prompt1: 'Froggy is hungry!',
   prompt2: 'Froggy wants apples!',
@@ -9,59 +14,7 @@ let qObj = {
   ],
   answerKey: 1
 }
-
-const $prompt1 = document.getElementById("prompt1")
-const $prompt2 = document.getElementById("prompt2")
-const $answers = document.getElementById("answers")
-
-
-const FROG_DIM = {
-  height: 171,
-  width: 207
-}
-
-const CANVAS_DIM = {
-  width: 1000,
-  height: 500
-}
-
 const NUM_ANSWERS = 4
-
-
-
-let frogImg = new Image()
-frogImg.src = './assets/frog.png'
-
-let frogCanvas = document.getElementById('frog-canvas').getContext('2d')
-let tongueCanvas = document.getElementById('tongue-canvas').getContext('2d')
-
-const frogImgX = CANVAS_DIM.width/2 - FROG_DIM.width/2
-
-const coordMouth = {
-  x: CANVAS_DIM.width/2,
-  y: FROG_DIM.height/2 - 7
-}
-
-
-frogImg.onload = function() {
-  frogCanvas.drawImage(this, frogImgX, 0)
-
-  // drawTongue(0)
-
-}
-
-
-
-
-writeQuestion(qObj)
-
-
-
-
-
-
-//*************
-
 
 function writeQuestion(qObj) {
   $prompt1.innerHTML= qObj.prompt1
@@ -79,6 +32,21 @@ function writeQuestion(qObj) {
     })
     $answers.appendChild(newAnsEl)
   }
+}
+
+// ***************************************
+// ***************************************
+// ***************************************
+// FROGGY
+
+const FROG_DIM = {
+  height: 171,
+  width: 207
+}
+
+const CANVAS_DIM = {
+  width: 1000,
+  height: 500
 }
 
 function drawTongue(ansIdx) {
@@ -108,7 +76,7 @@ function drawTongue(ansIdx) {
       tongueCanvas.lineTo(coordMouth.x + (coordTongueEnd.x - coordMouth.x) * amount, coordMouth.y + (coordTongueEnd.y - coordMouth.y) * amount);
       tongueCanvas.lineWidth = TONGUE_WIDTH
       if (i===NUM_FRAMES)
-        tongueCanvas.arc(coordTongueEnd.x, coordTongueEnd.y, TONGUE_WIDTH/4, 0, Math.PI * 2, true)
+      tongueCanvas.arc(coordTongueEnd.x, coordTongueEnd.y, TONGUE_WIDTH/4, 0, Math.PI * 2, true)
       tongueCanvas.stroke()
     }, TIME_TONGUE*i / NUM_FRAMES)
   }
@@ -127,3 +95,59 @@ function drawTongue(ansIdx) {
   }
 
 }
+
+function drawEyeLids() {
+
+}
+
+
+// ***************************************
+// ***************************************
+// ***************************************
+// INDEX
+
+const $prompt1 = document.getElementById("prompt1")
+const $prompt2 = document.getElementById("prompt2")
+const $answers = document.getElementById("answers")
+
+
+
+const frogEyelidImg = new Image()
+frogEyelidImg.src = './assets/frog-eyes-closed.png'
+const eyelidCanvas = document.getElementById('eyelid-canvas').getContext('2d')
+
+
+
+
+const frogImg = new Image()
+frogImg.src = './assets/frog.png'
+
+const frogCanvas = document.getElementById('frog-canvas').getContext('2d')
+const tongueCanvas = document.getElementById('tongue-canvas').getContext('2d')
+
+const frogImgX = CANVAS_DIM.width/2 - FROG_DIM.width/2
+
+const coordMouth = {
+  x: CANVAS_DIM.width/2,
+  y: FROG_DIM.height/2 - 7
+}
+
+
+frogImg.onload = function() {
+  frogCanvas.drawImage(this, frogImgX, 0)
+}
+frogEyelidImg.onload = function() {
+  eyelidCanvas.drawImage(this, frogImgX, 0)
+}
+
+
+
+
+writeQuestion(qObj)
+
+
+
+
+
+
+//*************
