@@ -11,29 +11,29 @@
   height: 500px;
 }
 
-#frog-canvas {
-  z-index: 1;
-   border: 1px solid green;
+.frog-canvas {
   position: relative;
   left: 0px;
+  display: block;
+}
+
+#frog-canvas {
+  z-index: 1;
+  /* border: 1px solid green; */
   top: 0px;
   /* background-color: green; */
 }
 
 #tongue-canvas {
   z-index: 2;
-   border: 1px solid red;
-  position: relative;
-  left: 0px;
+   /* border: 1px solid red; */
   top: -500px;
   /* background-color: #adf */
 }
 
 #eyelid-canvas {
   z-index: 3;
-   border: 1px solid blue;
-  position: relative;
-  left: 0px;
+  /* border: 1px solid blue; */
   top: -1000px;
   /* background-color: #adf */
 }

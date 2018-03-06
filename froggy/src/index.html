@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Frog test</title>
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -16,7 +16,9 @@
     </div>
 
     <div class="canvas-wrapper">
-      <canvas id="frog-canvas" width="1000" height="500"></canvas><canvas id="tongue-canvas" width="1000" height="500"></canvas><canvas id="eyelid-canvas" width="1000" height="500"></canvas>
+      <canvas id="frog-canvas" class="frog-canvas" width="1000" height="500">
+      </canvas><canvas id="tongue-canvas" class="frog-canvas" width="1000" height="500">
+      </canvas><canvas id="eyelid-canvas" class="frog-canvas" width="1000" height="500"></canvas>
     </div>
 
     <div class="answer-wrapper">
@@ -26,7 +28,7 @@
   </div>
 
 
-  <script  src="js/index.js"></script>
+  <script  src="./app.js"></script>
 </body>
 
 </html>
