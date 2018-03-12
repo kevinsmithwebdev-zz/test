@@ -1,0 +1,28 @@
+{
+  "name": "jwt-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server",
+    "start2": "sudo kill $(sudo lsof -t -i:8080) && nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "lodash": "^4.16.4",
+    "mongoose": "^5.0.9",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.0"
+  }
+}
