@@ -42,13 +42,27 @@ app.use('/data', dataRoute)
 
 // *************
 
+let runningExpress = false
+let runningMongo = false
+
+const confirmRunning = () => {
+  if (runningExpress && runningMongo)
+    console.log("\n*** Server and DB now running. You can confirm it by checking url \"http://localhost:" + process.env.PORT + "/test\" ")
+}
+
+app.get("/test", function(req, res) {
+  res.json({ message: "Express up and running!", runningExpress, runningMongo })
+})
+
 // start app
 app.listen(process.env.PORT)
 .on('listening', () => {
-  console.log("\n*** server listening on port:", process.env.PORT, "\n")
+  console.log("\nserver listening on port:", process.env.PORT, "\n")
+  runningExpress = true
+  confirmRunning()
 })
 .on('error', (err) => {
-  console.error("error opening port:", process.env.PORT)
+  console.error("### error opening port:", process.env.PORT)
   console.error(err)
 })
 
@@ -56,10 +70,26 @@ app.listen(process.env.PORT)
 mongoose.connect(process.env.MONGODB)
 .then(
   () => {
-    console.log("\n*** mongo opened:", process.env.MONGODB, '\n')
+    console.log("\nmongo opened:", process.env.MONGODB, '\n')
+    runningMongo = true
+    confirmRunning()
   },
   err => {
-    console.error("error starting mongo:", process.env.MONGODB)
+    console.error("### error starting mongo:", process.env.MONGODB)
     console.error(err)
   }
 )
+
+
+
+// const processExitHandler = async (error) => {
+//   await this.destroy();
+//   if(error) console.log(error);
+//   process.exit(error ? 1 : 0);
+// };
+//
+// process.on('exit', processExitHandler);
+// process.on('SIGINT', processExitHandler); // Catches ctrl+c
+// process.on('SIGUSR1', processExitHandler); // SIGUSR1 and SIGUSR2 are for `kill pid` (ex: nodemon restart)
+// process.on('SIGUSR2', processExitHandler);
+// process.on('uncaughtException', processExitHandler);
