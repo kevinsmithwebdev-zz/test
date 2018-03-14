@@ -25,7 +25,12 @@ class Header extends React.Component {
           <Link to="/">HOME</Link>
           { isLoggedIn
             ? <Link to="/" onClick={this.props.handleLogout} >LOGOUT</Link>
-            : <Link to="/login">LOGIN</Link>
+            : (
+                <React.Fragment>
+                  <Link to="/login">LOGIN</Link>
+                  <Link to="/register">REGISTER</Link>
+                </React.Fragment>
+              )
           }
         </span>
       </div>

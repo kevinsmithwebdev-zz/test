@@ -46,8 +46,10 @@ let runningExpress = false
 let runningMongo = false
 
 const confirmRunning = () => {
-  if (runningExpress && runningMongo)
-    console.log("\n*** Server and DB now running. You can confirm it by checking url \"http://localhost:" + process.env.PORT + "/test\" ")
+  if (runningExpress && runningMongo) {
+    console.log("\nServer and DB now running. You can confirm it by checking url:")
+    console.log("http://localhost:" + process.env.PORT + "/test")
+  }
 }
 
 app.get("/test", function(req, res) {
@@ -82,14 +84,14 @@ mongoose.connect(process.env.MONGODB)
 
 
 
-// const processExitHandler = async (error) => {
-//   await this.destroy();
-//   if(error) console.log(error);
-//   process.exit(error ? 1 : 0);
-// };
-//
-// process.on('exit', processExitHandler);
-// process.on('SIGINT', processExitHandler); // Catches ctrl+c
-// process.on('SIGUSR1', processExitHandler); // SIGUSR1 and SIGUSR2 are for `kill pid` (ex: nodemon restart)
-// process.on('SIGUSR2', processExitHandler);
-// process.on('uncaughtException', processExitHandler);
+const processExitHandler = async (error) => {
+  await this.destroy();
+  if(error) console.log(error);
+  process.exit(error ? 1 : 0);
+};
+
+process.on('exit', processExitHandler);
+process.on('SIGINT', processExitHandler); // Catches ctrl+c
+process.on('SIGUSR1', processExitHandler); // SIGUSR1 and SIGUSR2 are for `kill pid` (ex: nodemon restart)
+process.on('SIGUSR2', processExitHandler);
+process.on('uncaughtException', processExitHandler);

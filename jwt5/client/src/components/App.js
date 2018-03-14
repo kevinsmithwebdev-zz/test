@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Header from './Header/Header'
 import Home from './Home/Home'
 import Login from './Login/Login'
+import Register from './Register/Register'
 import Data from './Data/Data'
 
-import { AUTH_LOGIN_URL, AUTH_LOGOUT_URL } from '../constants/constants'
+import { AUTH_REGISTER_URL, AUTH_LOGIN_URL, AUTH_LOGOUT_URL } from '../constants/routes'
 
 import './App.css';
 
@@ -24,10 +25,10 @@ class App extends Component {
 
   }
 
-  handleLogin(userData) {
-    console.log('in handleLogin', userData)
+  handleRegister(userData) {
+    console.log('in handleRegister', userData)
     fetch(
-      AUTH_LOGIN_URL,
+      AUTH_REGISTER_URL,
       {
         method: 'POST',
         body: JSON.stringify(userData),
@@ -56,10 +57,38 @@ class App extends Component {
     });
   }
 
+  handleLogin(userData) {
+    fetch(
+      AUTH_LOGIN_URL,
+      {
+        method: 'POST',
+        body: JSON.stringify(userData),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return null;
+    })
+    .then((json) => {
+      if (json.user) {
+        this.setState({ userData: json.user, token: json.token });
+      } else {
+        console.error('login failed')
+      }
+    })
+    .catch((err) => {
+      console.error('error logging in', err)
+    });
+  }
+
 
   async handleLogout() {
     console.log('in App.handleLogout...')
-    // console.log(userData)
 
     await fetch(AUTH_LOGOUT_URL)
     .then((response) => {
@@ -95,12 +124,20 @@ class App extends Component {
             <Route exact path="/data"
               render={() => (
                 <Data
+                  user={this.state.userData}
                   token={this.state.token}
                 />
               )}
             />
 
-            {/* component={Data} /> */}
+            <Route
+              exact path="/register"
+              render={() => (
+                <Register
+                  handleRegister={this.handleRegister}
+                />
+              )}
+            />
 
             <Route
               exact path="/login"

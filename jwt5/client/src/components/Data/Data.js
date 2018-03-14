@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DATA_PROTECTED_URL, DATA_UNPROTECTED_URL } from '../../constants/constants'
+import { DATA_PROTECTED_URL, DATA_UNPROTECTED_URL } from '../../constants/routes'
 
 class Data extends React.Component {
   constructor(props) {
@@ -56,6 +56,12 @@ class Data extends React.Component {
   }
 
   render() {
+    console.log(this.state)
+    console.log(this.props)
+    console.log(typeof this.state.dataUnprotected)
+    console.log(this.state.dataUnprotected)
+    console.log(typeof this.state.dataProtected)
+    console.log(this.state.dataProtected)
     const unprotectedData = this.state.dataUnprotected.hasOwnProperty('data') ? this.state.dataUnprotected.data : "No data retrieved?!?"
     const protectedData = this.state.dataProtected.hasOwnProperty('data') ? this.state.dataProtected.data : "No data retrieved?!?"
     return (
@@ -65,6 +71,8 @@ class Data extends React.Component {
         <h5><i>"{unprotectedData}"</i></h5>
         <h3>Response from protected route:</h3>
         <h5><i>"{protectedData}"</i></h5>
+        <h3>Zip code of current user:</h3>
+        <h5><i>zippers</i></h5>
       </div>
     )
   }
