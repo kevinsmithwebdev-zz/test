@@ -1,52 +1,35 @@
 // should be saved in a .env file to protect
-// process.env.JWT_SECRET="jwtsecret"
+process.env.JWT_SECRET="jwtsecret"
 process.env.MONGODB='mongodb://localhost/tvcpptut'
 process.env.PORT=8080
-// process.env.JWT_EXP = 100 * 60 // JWT expiration time in seconds
+process.env.JWT_EXP = 100 * 60 // JWT expiration time in seconds
 
 // *************
 
 const express = require('express')
-const expressSession = require('express-session')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const mongoose = require('mongoose')
+
 const cors = require('cors')
 const morgan = require('morgan')
 
-// var fetch = require('fetch-cookie')(require('node-fetch'))
-
-const authRoute = require('./routes/auth')
-const dataRoute = require('./routes/data')
+// const authRoute = require('./routes/auth')
+// const dataRoute = require('./routes/data')
 
 // *************
 
 const app = express()
 
-app.use(cors({ credentials: true }))
+app.use(cors())
 app.use(morgan('tiny'))
-app.use(passport.initialize())
-app.use(bodyParser.json())
-app.use(expressSession)
-app.use(passport.session())
-
-
-passport.serializeUser(function(user, done) {
-  console.log('$$$ in serialize', user)
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  console.log('$$$ in deserialize', id)
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+// app.use(passport.initialize())
+// app.use(bodyParser.json())
 
 // routes
 
-app.use('/auth', authRoute)
-app.use('/data', dataRoute)
+// app.use('/auth', authRoute)
+// app.use('/data', dataRoute)
 
 // ***************************************
 // ***************************************
@@ -69,10 +52,10 @@ const confirmRunning = () => {
     console.log("")
     console.log(baseUrl+ "/data/unprotected")
     console.log(baseUrl+ "/data/protected")
-    console.log("\n\n")
+    console.log("")
   }
 }
-console.log("\n")
+
 // test route
 app.get("/test", (req, res) => {
   res.json({ message: "Server up and running!", runningExpress, runningMongo })
