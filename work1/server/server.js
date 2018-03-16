@@ -19,15 +19,29 @@ const morgan = require('morgan')
 const authRoute = require('./routes/auth')
 const dataRoute = require('./routes/data')
 
+const CORS_ORIGIN = [
+  "http://127.0.0.1:3000",
+  "http://localhost:3000"
+]
+
 // *************
 
 const app = express()
 
-app.use(cors({ credentials: true }))
+app.use(cors({
+  credentials: true,
+  origin: CORS_ORIGIN,
+  optionsSuccessStatus: 200
+}))
 app.use(morgan('tiny'))
 app.use(passport.initialize())
 app.use(bodyParser.json())
-app.use(expressSession)
+app.use(expressSession({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {  }
+}))
 app.use(passport.session())
 
 

@@ -21,7 +21,8 @@
     "mongoose": "^5.0.9",
     "node-fetch": "^2.1.1",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.1.0"
+    "passport-jwt": "^2.1.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "morgan": "^1.9.0"

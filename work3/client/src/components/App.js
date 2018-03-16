@@ -72,11 +72,11 @@ class App extends Component {
     })
     .then((json) => {
       console.log('json returned', json)
-      // if (json.user) {
-      //   this.setState({ userData: json.user, token: json.token })
-      // } else {
-      //   console.error('login failed')
-      // }
+      if (json.user) {
+        this.setState({ userData: json.user, token: json.token })
+      } else {
+        console.error('login failed')
+      }
     })
     .catch((err) => {
       console.error('error logging in', err)

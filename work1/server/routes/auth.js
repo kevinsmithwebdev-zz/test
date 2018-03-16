@@ -36,7 +36,7 @@ router.post("/login", (req, res) => {
   }
 
 
-  res.set('set-cookie', 'foo=bar')
+  res.set('set-cookie', 'pie=delicious')
   res.json({ msg: 'login OK' })
 
   // let user = User.getUserByUsername(username, (err, user) => {
