@@ -1,31 +1,26 @@
 {
-  "name": "work3",
+  "name": "work4",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "json:server": "json-server --watch ./db.json --port 5000"
+    "start": "nodemon server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "bcrypt-nodejs": "^0.0.3",
-    "client-sessions": "^0.8.0",
-    "connect-ensure-login": "^0.1.1",
+    "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
-    "cookie-session": "^2.0.0-beta.3",
+    "cookie-session-storage": "^1.0.0",
     "cors": "^2.8.4",
+    "ensure-login": "^0.1.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "json-server": "^0.12.1",
     "mongoose": "^5.0.10",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "session-file-store": "^1.2.0",
-    "uuid": "^3.2.1"
+    "session-passport-info": "^0.0.3"
   }
 }

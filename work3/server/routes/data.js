@@ -6,10 +6,9 @@ const router = express.Router()
 const authentication = require('../config/authentication')
 
 router.get("/unprotected", (req, res) => {
+  console.log('cookies', req.cookies)
   res.json({ data: "Anyone can see uprotected route." })
 })
-
-
 
 router.get('/protected',
   authentication.ensureLoggedIn(),

@@ -3,7 +3,7 @@ var records = [
     { id: 1, username: 'jack', password: 'secret', displayName: 'Jack', emails: [ { value: 'jack@example.com' } ] },
     { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', emails: [ { value: 'jill@example.com' } ] },
     { id: 3, username: 'asdf', password: 'asdfasdf', displayName: 'Asdf', emails: [ { value: 'asdf@asdf.com' } ] }
-    
+
 ];
 
 exports.findById = function(id, cb) {
@@ -19,8 +19,10 @@ exports.findById = function(id, cb) {
 
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
+    console.log('in fbu')
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
+      console.log('record', record)
       if (record.username === username) {
         return cb(null, record);
       }

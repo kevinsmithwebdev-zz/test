@@ -11,21 +11,25 @@ const authentication = require('../config/authentication')
 router.post('/login',
   passport.authenticate('local'),
   function(req, res) {
-    res.json({ msg: "succesful login", user: req.user
-  })
-
+    console.log('in /auth/login')
+    console.log(req.user)
+    console.log('\n\n**** cookie\n\n',req.session.cookie)
+    console.log('\n\n**** pp\n\n',req.session.passport)
+    res.set({'Set-Cookie': 'appSession=' + req.session.id})
+    res.json({ msg: "succesful login", user: req.user })
 })
 
 router.get('/logout',
   function(req, res) {
     req.logout();
+
     res.json({ msg: "logged out"})
   })
 
 router.get('/profile',
   authentication.ensureLoggedIn(),
   function(req, res) {
-    res.json({ msg: "proifel page "})
+    res.json({ msg: "profile page ", data: "profile page " })
   })
 
 module.exports = router
