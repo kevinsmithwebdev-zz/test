@@ -5,13 +5,14 @@ import '../common/css/auth.css'
 class Login extends React.Component {
   constructor() {
     super()
-
     this.state = {
       inputFields: {
         username: '',
         password: ''
-      }
+      },
+      isPasswordHide: true
     }
+
 
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -54,9 +55,11 @@ class Login extends React.Component {
             <input
               name="password"
               onChange={e => this.updateInputValue('password', e)}
-              type="text"
+              type="password"
               value={this.state.inputFields.password}
             />
+            <input id="checkBox" type="checkbox" />
+            <label htmlFor="checkBox">hide</label>
           </div>
           <button>Login</button>
           <br/><br/>

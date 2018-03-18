@@ -37,16 +37,15 @@ class Data extends React.Component {
       }
     })
     .then((response) => {
-      if (response.status === 200) {
+      if (response.status === 200)
         return response.json()
-      }
       return null
     })
     .then((json) => {
       if (json)
         this.setState({ dataProtected: json })
       else
-        this.setState({ dataProtected: { data: "Denied! No response from secret route!" } })
+        this.setState({ dataProtected: { data: "What? No JSON data sent." } })
     })
     .catch((err) => {
       console.error('error fetching protected data', err)

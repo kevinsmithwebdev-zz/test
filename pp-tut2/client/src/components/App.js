@@ -7,7 +7,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import Data from './Data/Data'
 
-import { AUTH_REGISTER_URL, AUTH_LOGIN_URL, AUTH_LOGOUT_URL, AUTH_CHECKJWT_URL } from '../constants/routes'
+import { AUTH_REGISTER_URL, AUTH_LOGIN_URL, AUTH_CHECKJWT_URL } from '../constants/routes'
 import { LOCAL_STORAGE_KEY } from '../constants/auth'
 
 import './App.css'
@@ -23,12 +23,6 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
   }
-
-
-
-
-
-
 
 
 
@@ -57,18 +51,6 @@ class App extends Component {
     })
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   handleRegister(userData) {
