@@ -7,8 +7,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import Data from './Data/Data'
 
-import { AUTH_REGISTER_URL, AUTH_LOGIN_URL, AUTH_CHECKJWT_URL } from '../constants/routes'
-import { LOCAL_STORAGE_KEY } from '../constants/auth'
+import { AUTH_REGISTER_URL, AUTH_LOGIN_URL } from '../constants/routes'
 
 import './App.css'
 
@@ -26,35 +25,35 @@ class App extends Component {
 
 
 
-  componentDidMount() {
-    console.log('cdm')
-    let token = 'JWT ' + localStorage.getItem(LOCAL_STORAGE_KEY)
-    console.log('token', token)
-
-    fetch(AUTH_CHECKJWT_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token
-      }
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
-      }
-      return null
-    })
-    .then((json) => {
-      console.log('json', json)
-      // console.log('json.user', json.user)
-      if (json && json.user)
-        this.setState({ userData: json.user })
-      else
-        localStorage.removeItem(LOCAL_STORAGE_KEY)
-    })
-    .catch((err) => {
-      console.error('error logging in', err)
-    })
-  }
+  // componentDidMount() {
+  //   console.log('cdm')
+  //   let token = 'JWT ' + localStorage.getItem(LOCAL_STORAGE_KEY)
+  //   console.log('token', token)
+  //
+  //   fetch(AUTH_CHECKJWT_URL, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: token
+  //     }
+  //   })
+  //   .then((response) => {
+  //     if (response.status === 200) {
+  //       return response.json()
+  //     }
+  //     return null
+  //   })
+  //   .then((json) => {
+  //     console.log('json', json)
+  //     // console.log('json.user', json.user)
+  //     if (json && json.user)
+  //       this.setState({ userData: json.user })
+  //     else
+  //       localStorage.removeItem(LOCAL_STORAGE_KEY)
+  //   })
+  //   .catch((err) => {
+  //     console.error('error logging in', err)
+  //   })
+  // }
 
   handleRegister(userData) {
     fetch(
@@ -75,7 +74,7 @@ class App extends Component {
     })
     .then((json) => {
       if (json.user) {
-        this.setState({ userData: json.user, token: json.token })
+        this.setState({ userData: json.user })
       } else {
         console.error('login failed')
       }
@@ -93,6 +92,7 @@ class App extends Component {
         body: JSON.stringify(userData),
         headers: {
           'Content-Type': 'application/json',
+          credentials: 'include' 
         }
       }
     )
@@ -104,8 +104,8 @@ class App extends Component {
     })
     .then((json) => {
       if (json.user) {
-        this.setState({ userData: json.user, token: json.token })
-        localStorage.setItem(LOCAL_STORAGE_KEY, json.token)
+        this.setState({ userData: json.user })
+        // localStorage.setItem(LOCAL_STORAGE_KEY, json.token)
       } else {
         console.error('login failed')
       }
@@ -116,8 +116,7 @@ class App extends Component {
   }
 
   handleLogout() {
-    this.setState({ userData: {}, token: '' })
-    localStorage.removeItem(LOCAL_STORAGE_KEY)
+    this.setState({ userData: {} })
   }
 
   render() {

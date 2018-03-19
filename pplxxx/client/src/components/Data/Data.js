@@ -28,12 +28,10 @@ class Data extends React.Component {
       console.error('error fetching unprotected data', err)
     })
 
-    const token = 'JWT ' + this.props.token
 
     fetch(DATA_PROTECTED_URL, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token
       }
     })
     .then((response) => {

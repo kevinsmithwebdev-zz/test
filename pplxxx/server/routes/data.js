@@ -1,10 +1,11 @@
 const express = require('express')
-const authorization = require('../config/authorization')
+// const authorization = require('../config/authorization')
 const passport = require("passport")
 
 const router = express.Router()
 
 router.get("/unprotected", (req, res) => {
+  console.log('\n\n**** req.cookies', req.cookies, '\n\n')
   res.json({ data: "Anyone can see uprotected route." })
 })
 

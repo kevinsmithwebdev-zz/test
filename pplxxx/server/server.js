@@ -1,35 +1,50 @@
 // should be saved in a .env file to protect
-process.env.JWT_SECRET="jwtsecret"
 process.env.MONGODB='mongodb://localhost/tvcpptut'
 process.env.PORT=8080
-// process.env.JWT_EXP = (7*24*60*60) // JWT expiration time in seconds
-process.env.JWT_EXP = 30 // JWT expiration time in seconds
 
-// *************
-
-const express = require('express')
-const bodyParser = require('body-parser')
-const passport = require('passport')
-const mongoose = require('mongoose')
+// dependencies
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 const cors = require('cors')
-const morgan = require('morgan')
 
-const authRoute = require('./routes/auth')
-const dataRoute = require('./routes/data')
+
+var auth = require('./routes/auth');
+var data = require('./routes/data');
 
 // *************
 
-const app = express()
+var app = express();
 
-app.use(cors())
-app.use(morgan('tiny'))
-app.use(passport.initialize())
-app.use(bodyParser.json())
+app.use(morgan('dev'));
+app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(require('express-session')({
+  cookie: { httpOnly: false },
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-// routes
 
-app.use('/auth', authRoute)
-app.use('/data', dataRoute)
+app.use('/auth', auth);
+app.use('/data', data);
+
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 // ***************************************
 // ***************************************

@@ -6,7 +6,7 @@ const router = express.Router()
 
 const authentication = require('../config/authentication')
 
-// const User = require('../models/user.js')
+const User = require('../models/user.js')
 
 router.post('/login',
   passport.authenticate('local'),
@@ -18,6 +18,25 @@ router.post('/login',
     res.set({'Set-Cookie': 'appSession=' + req.session.id})
     res.json({ msg: "succesful login", user: req.user })
 })
+
+
+router.post('/register', (req, res) => {
+  // Create a user object to save, using values from incoming JSON
+  console.dir(req.body)
+  console.log('post', req.body)
+  const newUser = new User(req.body);
+
+  // Save, via Passport's "register" method, the user
+  User.register(newUser, req.body.password, (err, user) => {
+    // If there's a problem, send back a JSON object with the error
+    if (err) {
+      return res.send(JSON.stringify({ error: err }));
+    }
+    // Otherwise, for now, send back a JSON object with the new user's info
+    return res.send(JSON.stringify(user));
+  });
+});
+
 
 router.get('/logout',
   function(req, res) {

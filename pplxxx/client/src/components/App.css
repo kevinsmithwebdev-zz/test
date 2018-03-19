@@ -1,0 +1,11 @@
+body {
+  margin: 0 auto;
+  font-family: sans-serif;
+  max-width: 800px;
+}
+
+#App .content {
+  background-color: antiquewhite;
+  padding: 5px;
+  height: 500px;
+}

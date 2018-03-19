@@ -95,10 +95,8 @@ router.post("/login", (req, res) => {
 //*************
 
 router.get('/checkjwt', passport.authenticate('jwt', { session: false }), (req, res) => {
-  // res.status(200).json({ user: { username: "wowsers dude" } })
   res.status(200).json({ user: sanitizeUser(req.user) })
 })
-
 
 //*************
 

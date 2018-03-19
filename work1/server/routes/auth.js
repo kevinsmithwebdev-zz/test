@@ -62,37 +62,37 @@ router.post("/login", (req, res) => {
 
 //*************
 
-// router.post("/register", (req, res) => {
-//   if (!req.body.username || !req.body.password) {
-//     return res.status(400).json({ error: "username and password required"} )
-//   }
-//
-//   let { username, password, zipCode } = req.body
-//
-//   User.count({ 'username': username }, (err, count) => {
-//
-//     if (err) {
-//       console.error('### error checking DB for user count', err)
-//       throw err
-//     }
-//     if (count!==0)
-//       return res.status(400).json({ error: "username taken" })
-//
-//     var newUser = new User({
-//       username,
-//       hash: password,
-//       zipCode
-//     })
-//
-//     User.createUser(newUser, (err, user) => {
-//       if (err) {
-//         console.error('### error creating user', err)
-//         return res.status(500).json({ error: 'error creating user' })
-//       }
-//       return res.json({ user: sanitizeUser(user) })
-//     })
-//   })
-// })
+router.post("/register", (req, res) => {
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).json({ error: "username and password required"} )
+  }
+
+  let { username, password, zipCode } = req.body
+
+  User.count({ 'username': username }, (err, count) => {
+
+    if (err) {
+      console.error('### error checking DB for user count', err)
+      throw err
+    }
+    if (count!==0)
+      return res.status(400).json({ error: "username taken" })
+
+    var newUser = new User({
+      username,
+      hash: password,
+      zipCode
+    })
+
+    User.createUser(newUser, (err, user) => {
+      if (err) {
+        console.error('### error creating user', err)
+        return res.status(500).json({ error: 'error creating user' })
+      }
+      return res.json({ user: sanitizeUser(user) })
+    })
+  })
+})
 
 //*************
 
