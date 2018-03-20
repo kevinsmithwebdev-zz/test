@@ -28,6 +28,7 @@ class Data extends React.Component {
       console.error('error fetching unprotected data', err)
     })
 
+
     fetch(DATA_PROTECTED_URL, {
       headers: {
         'Content-Type': 'application/json',

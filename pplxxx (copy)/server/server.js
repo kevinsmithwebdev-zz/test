@@ -1,43 +1,50 @@
 // should be saved in a .env file to protect
 process.env.MONGODB='mongodb://localhost/tvcpptut'
 process.env.PORT=8080
-process.env.CLIENT_URL='http://localhost:3000'
-process.env.SESSION_SECRET='changeme'
 
 // dependencies
-var express = require('express')
-var morgan = require('morgan')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var mongoose = require('mongoose')
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 const cors = require('cors')
 
 
-var auth = require('./routes/auth')
-var data = require('./routes/data')
+var auth = require('./routes/auth');
+var data = require('./routes/data');
 
 // *************
 
-var app = express()
+var app = express();
 
-app.use(morgan('tiny'))
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
-app.use(bodyParser.json())
+app.use(morgan('dev'));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(require('express-session')({
   cookie: { httpOnly: false },
-  secret: process.env.SESSION_SECRET,
+  secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false
-}))
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use(passport.initialize())
-app.use(passport.session())
 
-app.use('/auth', auth)
-app.use('/data', data)
+app.use('/auth', auth);
+app.use('/data', data);
 
+// passport config
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 // ***************************************
 // ***************************************
@@ -56,8 +63,8 @@ const confirmRunning = () => {
     console.log('\nOther available routes:\n')
     console.log(baseUrl + "/auth/register")
     console.log(baseUrl + "/auth/login")
-    console.log(baseUrl + "/auth/logout")
-    console.log(baseUrl + "/auth/checksession")
+    // console.log(baseUrl + "/auth/logout") // not needed with JWT?
+    console.log(baseUrl + "/auth/checkjwt")
     console.log("")
     console.log(baseUrl + "/data/unprotected")
     console.log(baseUrl + "/data/protected")

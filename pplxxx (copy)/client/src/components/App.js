@@ -7,7 +7,7 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 import Data from './Data/Data'
 
-import { AUTH_REGISTER_URL, AUTH_LOGIN_URL, AUTH_LOGOUT_URL, AUTH_CHECKSESSION_URL } from '../constants/routes'
+import { AUTH_REGISTER_URL, AUTH_LOGIN_URL } from '../constants/routes'
 
 import './App.css'
 
@@ -23,33 +23,37 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  componentDidMount() {
-    console.log('cdm')
 
-    fetch(AUTH_CHECKSESSION_URL, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
-      }
-      return null
-    })
-    .then((json) => {
-      console.log('json', json)
-      console.log('json.user', json.user)
-      if (json && json.user)
-        this.setState({ userData: json.user })
-      else
-        console.log('no session')
-    })
-    .catch((err) => {
-      console.error('error logging in', err)
-    })
-  }
+
+  // componentDidMount() {
+  //   console.log('cdm')
+  //   let token = 'JWT ' + localStorage.getItem(LOCAL_STORAGE_KEY)
+  //   console.log('token', token)
+  //
+  //   fetch(AUTH_CHECKJWT_URL, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: token
+  //     }
+  //   })
+  //   .then((response) => {
+  //     if (response.status === 200) {
+  //       return response.json()
+  //     }
+  //     return null
+  //   })
+  //   .then((json) => {
+  //     console.log('json', json)
+  //     // console.log('json.user', json.user)
+  //     if (json && json.user)
+  //       this.setState({ userData: json.user })
+  //     else
+  //       localStorage.removeItem(LOCAL_STORAGE_KEY)
+  //   })
+  //   .catch((err) => {
+  //     console.error('error logging in', err)
+  //   })
+  // }
 
   handleRegister(userData) {
     fetch(
@@ -113,25 +117,6 @@ class App extends Component {
   }
 
   handleLogout() {
-    fetch(AUTH_LOGOUT_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include'
-    })
-    .then((response) => {
-      if (response.status === 200)
-        return response.json()
-      return null
-    })
-    .then((json) => {
-      console.log('logout json', json)
-      if (json)
-        this.setState({ userData: {} })
-    })
-    .catch((err) => {
-      console.error('error loggin out', err)
-    })
     this.setState({ userData: {} })
   }
 

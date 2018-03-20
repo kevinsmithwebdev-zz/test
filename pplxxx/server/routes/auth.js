@@ -1,67 +1,38 @@
-const express = require('express');
-const passport = require('passport');
-const Account = require('../models/account');
-const router = express.Router();
+const express = require('express')
+const passport = require('passport')
+const User = require('../models/user')
 
-router.post('/register', (req, res, next) => {
-  Account.register(new Account({ username : req.body.username }), req.body.password, (err, account) => {
-    if (err) {
-      return res.status(201).json({ error : err.message });
-    }
+const router = express.Router()
+const authorization = require('../config/authorization')
 
-    passport.authenticate('local')(req, res, () => {
-      req.session.save((err) => {
-        if (err) {
-          return next(err);
-        }
-        res.status(200).json({ msg: "registered", user: account });
-      });
-    });
-  });
-});
+router.post('/register', (req, res) => {
+  User.register(new User({ username : req.body.username }), req.body.password, (err, user) => {
+    if (err)
+      return res.status(201).json({ error : err.message })
 
-router.post('/login', passport.authenticate('local'), (req, res, next) => {
-  req.session.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    console.log('req.session', req.session)
-    console.log('req.user', req.user)
-    res.session = { cookie: req.session.cookie }
-    res.cookie('userid', req.user._id, { maxAge: 2592000000 });
-    res.status(200).json({ msg: "logged in", user: req.user });
-  });
-});
-
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  req.session.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.status(200).json({ msg: "logged out" });
-  });
-});
-
-router.get('/ping', (req, res) => {
-  res.status(200).send("pong!");
-});
-
-router.get("/unprotected", (req, res) => {
-  console.log('\n\n**** req.cookies', req.cookies, '\n\n')
-  console.log('\n\n**** req.session', req.session, '\n\n')
-  res.json({ data: "Anyone can see uprotected route." })
+    res.status(200).json({ msg: "registered", user: user })
+  })
 })
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-    return next();
-  res.sendStatus(401);
-}
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  req.session.save((err) => {
+    if (err) {
+      console.errer("login error", err)
+      res.status(401).json({ error: "error logging in" })
+    }
+    res.status(200).json({ msg: "logged in", user: req.user })
+  })
+})
 
-router.get('/protected', isLoggedIn, function(req, res) {
-  console.log('in auth')
-  res.json({ data: "Success! This is the protected data!" })
-});
+router.get('/logout', (req, res, next) => {
+  req.logout() // wowsers - error handler?
+  res.status(200).json({ msg: "logged out" })
+})
 
-module.exports = router;
+
+router.get('/checksession', authorization.isLoggedIn, function(req, res) {
+  console.log('in auth', req.user)
+  res.status(200).json({ data: "checksession success", user: req.user })
+})
+
+module.exports = router
