@@ -29,7 +29,7 @@ Other available routes:
 
 http://localhost:8080/auth/register
 http://localhost:8080/auth/login
-http://localhost:8080/auth/logout
+http://localhost:8080/auth/checkjwt
 
 http://localhost:8080/data/unprotected
 http://localhost:8080/data/protected

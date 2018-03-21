@@ -24,36 +24,34 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-
-
   componentDidMount() {
-    console.log('cdm')
-    let token = 'JWT ' + localStorage.getItem(LOCAL_STORAGE_KEY)
-    console.log('token', token)
-
-    fetch(AUTH_CHECKJWT_URL, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token
-      }
-    })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json()
-      }
-      return null
-    })
-    .then((json) => {
-      console.log('json', json)
-      // console.log('json.user', json.user)
-      if (json && json.user)
-        this.setState({ userData: json.user })
-      else
-        localStorage.removeItem(LOCAL_STORAGE_KEY)
-    })
-    .catch((err) => {
-      console.error('error logging in', err)
-    })
+    let token = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (token) {
+      this.setState({ token })
+      fetch(AUTH_CHECKJWT_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token
+        }
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json()
+        }
+        return null
+      })
+      .then((json) => {
+        if (json && json.user)
+          this.setState({ userData: json.user })
+        else
+          localStorage.removeItem(LOCAL_STORAGE_KEY)
+      })
+      .catch((err) => {
+        console.error('error logging in', err)
+      })
+    } else {
+      // this.setState({ userData: {} }) // clear userData if no token?
+    }
   }
 
   handleRegister(userData) {
@@ -75,7 +73,7 @@ class App extends Component {
     })
     .then((json) => {
       if (json.user) {
-        this.setState({ userData: json.user, token: json.token })
+        this.setState({ userData: json.user, token: 'JWT ' + json.token })
       } else {
         console.error('login failed')
       }
@@ -104,8 +102,8 @@ class App extends Component {
     })
     .then((json) => {
       if (json.user) {
-        this.setState({ userData: json.user, token: json.token })
-        localStorage.setItem(LOCAL_STORAGE_KEY, json.token)
+        this.setState({ userData: json.user, token: "JWT " + json.token })
+        localStorage.setItem(LOCAL_STORAGE_KEY, "JWT " + json.token)
       } else {
         console.error('login failed')
       }

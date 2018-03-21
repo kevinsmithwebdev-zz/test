@@ -1,9 +1,9 @@
 // should be saved in a .env file to protect
 process.env.JWT_SECRET="jwtsecret"
-process.env.MONGODB='mongodb://localhost/tvcpptut'
+process.env.MONGODB='mongodb://localhost/tvcpptut-jwt'
 process.env.PORT=8080
 // process.env.JWT_EXP = (7*24*60*60) // JWT expiration time in seconds
-process.env.JWT_EXP = 30 // JWT expiration time in seconds
+process.env.JWT_EXP = 900 // JWT expiration time in seconds
 
 // *************
 

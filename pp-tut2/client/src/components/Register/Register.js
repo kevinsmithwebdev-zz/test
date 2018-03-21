@@ -44,7 +44,6 @@ class Register extends React.Component {
   }
 
   render() {
-    console.log('this.state.isPasswordHide', this.state.isPasswordHide)
     return (
       <div>
         <h1>Registration Page</h1>

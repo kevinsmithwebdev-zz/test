@@ -1,1 +1,1 @@
-export const LOCAL_STORAGE_KEY = 'kswdBp'
+export const LOCAL_STORAGE_KEY = 'kswdBpJwt'
