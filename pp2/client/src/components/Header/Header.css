@@ -1,0 +1,35 @@
+#Header {
+  background-color: lightgreen;
+  padding: 10px;
+  display: flex;
+}
+
+#Header .name {
+  font-size: 150%;
+  font-weight: bold;
+  flex: 1;
+}
+#Header .name .welcome {
+  font-style: italic;
+}
+
+#Header .nav {
+  text-align: right;
+  flex: 1;
+}
+
+#Header .nav * {
+  margin: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  #Header {
+    flex-direction: column;
+  }
+  #Header .name {
+    text-align: center;
+  }
+  #Header .nav {
+    text-align: center;
+  }
+}
