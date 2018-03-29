@@ -29,7 +29,41 @@ const User = module.exports = mongoose.model('User', UserSchema)
 
 //*************
 
+module.exports.getUserByUsername = (username, callback) => {
+  console.log('in gubu')
+  let query = { username }
+  return User.findOne(query, callback)
+}
 
+module.exports.getUserById = (id, callback) => {
+  User.findById(id, callback)
+}
+
+//*************
+
+module.exports.login = (username, candidatePassword) => {
+
+  return new Promise((resolve, reject) => {
+    User.findOne({ username }).exec()
+    .then(user => {
+      if (user)
+        return user.authenticate(candidatePassword)
+      else
+        throw { status: 400, message: 'username or password do not match'}
+    })
+    .then(user => {
+      if (user.user)
+        resolve(user.user)
+      else
+        throw { status: 400, message: 'username or password do not match'}
+    })
+    .catch(err => {
+      if (!err.status)
+        err.status = 500
+      reject(err)
+    })
+  })
+}
 
 // module.exports.comparePassword = (candidatePassword, hash) => {
 //   console.log('cp', candidatePassword)
@@ -52,38 +86,3 @@ const User = module.exports = mongoose.model('User', UserSchema)
 //     })
 //   })
 // }
-
-//*************
-//
-// module.exports.getUserByUsername = (username, callback) => {
-//   let query = {username: username}
-//   return User.findOne(query, callback)
-// }
-
-// module.exports.getUserById = (id, callback) => {
-//   User.findById(id, callback)
-// }
-
-
-module.exports.login = (username, candidatePassword) => {
-  return new Promise((resolve, reject) => {
-    User.findOne({ username })
-    .then(user => {
-      if (!user)
-        throw "user not found"
-      console.log('login 98sdf user', user)
-      User.authenticate(username, candidatePassword).exec()
-      .then(user => {
-        console.log('auth', user)
-        resolve(user)
-      })
-      .catch(err => {
-        console.log('auth err')
-        throw err
-      })
-
-
-    })
-    .catch( err => reject(err))
-  })
-}

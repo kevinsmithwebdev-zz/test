@@ -44,14 +44,13 @@ router.post('/update', passport.authenticate('jwt', { session: false }), (req, r
   User.findByIdAndUpdate(req.user.id, { $set: req.body }, { new: false })
   .then(user => {
     console.log('in update', user)
-    res.status(200).json(user);
+    res.status(200).json({ user, success: "user updated" });
   })
   .catch(err => {
     console.error(err)
-    res.status(500).json('### Error in database.')
+    res.status(500).json({ error: 'Error in database.' })
   })
 })
-
 
 //*************
 
