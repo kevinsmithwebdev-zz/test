@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js"
   },
   "repository": {
@@ -14,6 +14,7 @@
     "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
   },
   "dependencies": {
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
