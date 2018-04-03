@@ -6,7 +6,7 @@ const app = require('../app')
 const db = require('../db')
 
 const dataUnprotectedRoute = '/data/unprotected'
-const dataProtectedRoute= '/data/protected'
+const dataProtectedRoute = '/data/protected'
 
 describe('testing data routes', () => {
   let request = null

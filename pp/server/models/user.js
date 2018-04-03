@@ -18,8 +18,11 @@ const UserSchema = mongoose.Schema({
 // must be function to use *this*
 UserSchema.methods.toJSON = function() {
   let obj = this.toObject()
+
   delete obj.hash
   delete obj.salt
+  delete obj.password
+
   return obj
 }
 

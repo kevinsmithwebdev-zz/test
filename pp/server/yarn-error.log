@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /home/ksjazzguitar/.yarn/bin/yarn.js start
+  /usr/bin/node /home/ksjazzguitar/.yarn/bin/yarn.js test
 
 PATH: 
   /home/ksjazzguitar/.yarn/bin:/home/ksjazzguitar/.config/yarn/global/node_modules/.bin:/home/ksjazzguitar/bin:/home/ksjazzguitar/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/genymobile/genymotion/tools:/snap/bin
@@ -4338,8 +4338,8 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c node server.js
-  Directory: /home/ksjazzguitar/Programming/test/pp2/server
+  Arguments: -c jest
+  Directory: /home/ksjazzguitar/programming/test/pp/server
   Output:
   
       at ProcessTermError.MessageError (/home/ksjazzguitar/.yarn/lib/cli.js:186:110)
