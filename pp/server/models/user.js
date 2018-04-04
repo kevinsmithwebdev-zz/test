@@ -45,7 +45,6 @@ module.exports.getUserById = (id, callback) => {
 //*************
 
 module.exports.login = (username, candidatePassword) => {
-
   return new Promise((resolve, reject) => {
     User.findOne({ username }).exec()
     .then(user => {
