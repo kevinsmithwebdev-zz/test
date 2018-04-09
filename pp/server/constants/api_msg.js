@@ -15,6 +15,7 @@ exports.loginFailure = {
   message: (message) => ({
     error: `Login failure: ${message}`
   }),
+  log: (log) => log,
   code: 401
 }
 

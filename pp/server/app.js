@@ -2,7 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const cors = require('cors')
-const morgan = require('morgan')
+
+const loggers = require('./logger')
 
 const authRoute = require('./routes/auth')
 const dataRoute = require('./routes/data')
@@ -14,8 +15,8 @@ const app = express()
 
 // middleware
 
+app.use(loggers)
 app.use(cors())
-app.use(morgan('tiny'))
 app.use(passport.initialize())
 app.use(bodyParser.json())
 

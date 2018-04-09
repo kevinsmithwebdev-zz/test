@@ -19,7 +19,12 @@ router.post("/login", (req, res) => {
     return res.status(loginSuccess.code).json(loginSuccess.message(user, token))
   })
   .catch(err => {
-    return res.status(loginFailure.code).json(loginFailure.message(err.message))
+    console.log('req.log', req.log)
+    req.log = loginFailure.log('Danger Will Robinson!!!')
+    req.message = loginFailure.message(err.message)
+    console.log('req.log', req.log)
+    console.log('req.log', req.message)
+    return res.status(loginFailure.code).json(req.message)
   })
 })
 
