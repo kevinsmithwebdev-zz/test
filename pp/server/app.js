@@ -5,9 +5,7 @@ const cors = require('cors')
 
 const loggers = require('./logger')
 
-const authRoute = require('./routes/auth')
-const dataRoute = require('./routes/data')
-const userRoute = require('./routes/user')
+const routes = require('./routes')
 
 // *************
 
@@ -21,9 +19,6 @@ app.use(passport.initialize())
 app.use(bodyParser.json())
 
 // routes
-
-app.use('/auth', authRoute)
-app.use('/data', dataRoute)
-app.use('/user', userRoute)
+routes.map(route => app.use(route.path, route.router))
 
 module.exports = app.listen(process.env.PORT)

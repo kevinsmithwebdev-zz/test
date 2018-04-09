@@ -4,11 +4,11 @@ const mongoose = require('mongoose')
 
 const router = express.Router()
 
-const authentication = require('../config/authentication')
+const authentication = require('../../config/authentication')
 
-const User = require('../models/user.js')
+const User = require('../../models/user.js')
 
-const { registerIncomplete, registerUsernameTaken, registerSuccess, registerServerError, deleteUserSuccess, deleteUserFailure } = require('../constants/api_msg')
+const { registerIncomplete, registerUsernameTaken, registerSuccess, registerServerError, deleteUserSuccess, deleteUserFailure } = require('../../constants/api_msg')
 
 //*************
 

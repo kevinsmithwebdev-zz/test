@@ -21,7 +21,7 @@ const {
   checkjwtSuccess,
   deleteUserFailure,
   deleteUserSuccess
-} = require('../constants/api_msg')
+} = require('../../constants/api_msg')
 
 const userRegisterRoute = '/user/register'
 const userDeleteRoute   = '/user/delete'
