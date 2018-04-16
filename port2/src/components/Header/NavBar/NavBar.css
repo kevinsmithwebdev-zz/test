@@ -1,0 +1,40 @@
+/* @import '../../../assets/styles/colors.sass'
+@import '../../../assets/styles/constants.sass'
+
+.navbar
+  margin-top: $section-bumper-padding
+  margin-bottom: $section-bumper-padding
+  background: $BG-gradient
+  border-radius: $border-radius
+  height: 50px
+  width: 100%
+
+.navbar ul
+  list-style-type: none
+  margin: 0 0 0 20px
+  padding: 0
+  overflow: hidden
+
+.navbar li
+  float: left
+  margin: 8px 3px
+
+.navLink
+  transition: .4s ease
+  display: block
+  padding: 8px
+  text-decoration: none
+  color: $navbar-link
+
+.navLink:hover
+  color: $navbar-link-hover
+  border-bottom: 3px solid $navbar-link-hover
+
+.navLinkCur
+  display: block
+  padding: 8px
+  text-decoration: none
+  color: $navbar-link-hover
+
+.navLinkCur:hover
+  color: $navbar-link-hover */
