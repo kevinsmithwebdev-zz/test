@@ -1,16 +1,12 @@
 import React from 'react'
-// import TitleBar from './TitleBar/TitleBar'
-// import NavBar from './NavBar/NavBar'
 
-// import './Header.css'
+import './Header.css'
 
 const Header = () => {
   return (
-    <p>Header</p>
-    // <header>
-    //   <TitleBar />
-    //   <NavBar />
-    // </header>
+    <header id='Header'>
+      <h1>Timezone Comparison</h1>
+    </header>
   )
 }
 export default Header
