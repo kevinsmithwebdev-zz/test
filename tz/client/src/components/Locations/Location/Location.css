@@ -6,3 +6,7 @@
     padding: 1px 4px;
     margin: 0 2px;
     border-radius: 1px; }
+  #Location .label {
+    font-weight: bold; }
+  #Location .label::after {
+    content: " "; }

@@ -1,47 +1,72 @@
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import * as locationsActions from '../../../redux/actions'
+
 import React from 'react'
 
 import './Location.css'
 
-
 class Location extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-      newLoc: ''
+      newLocStr: ''
     }
 
-    this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.updateInputValue = this.updateInputValue.bind(this)
   }
 
-  handleClick(e) {
-    console.log('click', e.target.value)
+  handleSubmit() {
+    this.setState({ newLocStr: '' })
+    this.props.checkLocation(this.props.locSlot, this.state.newLocStr)
   }
 
-  handleChange(e) {
-    console.log('key', e.target)
+  updateInputValue(e) {
+    this.setState({ newLocStr:  e.target.value })
   }
-
-  // updateInputValue(field, e) {
-  //    let newFields = this.state.inputFields
-  //    newFields[field] = e.target.value
-  //    this.setState({
-  //      inputFields: newFields
-  //    })
-  //  }
 
   render() {
+    let location = this.props.locations[this.props.locSlot]
+    const pretty = (num) => (num).toFixed(2)
+
     return (
       <div id="Location">
-        <span>Location: </span>
-        <span>{this.props.loc}</span>
+        <span className="label">Location:</span>
+        <span>{location.locStr}</span>
+        <br />
+        <span className="label">Coords:</span>
+        <span>{`${pretty(location.lat)}, ${pretty(location.lon)}`}</span>
+        <br />
+        <span className="label">TZ Name:</span>
+        <span>{location.timeZoneName}</span>
+        <br />
+        <span className="label">TZ ID:</span>
+        <span>{location.timeZoneId}</span>
+        <br />
+        <span className="label">GMT Offset:</span>
+        <span>{location.rawOffset}</span>
+        <br />
+        <span className="label">In DST:</span>
+        <span>{location.dstOffset?'yes':'no'}</span>
         <form>
-          Location:<br />
-          <input type="text" name="location" value={this.state.newLoc} onChange={this.handleChange} />
-          <span className="submitBtn" onClick={this.handleClick}>+</span>
+          Enter new location:<br />
+          <input type="text" name="location" value={this.state.newLocStr} onChange={this.updateInputValue} />
+          <span className="submitBtn" onClick={this.handleSubmit}>+</span>
         </form>
       </div>
     )
   }
 }
-export default Location
+
+function mapStateToProps(state) {
+  return { locations: state.locations }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ ...locationsActions }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Location)

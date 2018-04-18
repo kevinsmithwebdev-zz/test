@@ -31,20 +31,36 @@ router.get("/timezone", (req, res) => {
 
 //*************
 
-router.get("/location:loc", (req, res) => {
+router.get("/location/:loc", (req, res) => {
   let loc = req.params.loc.trim()
-  console.log('*** ', loc)
+  let dt = Math.round(Date.now()/1000)
+
   if (!loc)
     return res.status(400).json({ error: 'location parameter must be a string' })
 
-  let gUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${process.env.G_KEY}`
+  let newLoc = null
 
+  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${process.env.G_KEY}`)
+  .then(response => response.json())
 
-  fetch(gUrl)
-  .then(response => {
-    response.json().then(json => {
-      res.json(json)
-    })
+  .then(json => {
+    if (json.results.length) {
+      newLoc = {
+        locStr: json.results[0].formatted_address,
+        lat: json.results[0].geometry.location.lat,
+        lon: json.results[0].geometry.location.lng,
+      }
+    }
+    return newLoc
+  })
+  .then(newLoc => fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${newLoc.lat},${newLoc.lon}&timestamp=${dt}&key=${process.env.G_KEY}`))
+  .then(response => response.json())
+  .then(json => {
+    newLoc.dstOffset = json.dstOffset/3600
+    newLoc.rawOffset = json.rawOffset/3600
+    newLoc.timeZoneId = json.timeZoneId
+    newLoc.timeZoneName = json.timeZoneName
+    return res.json(newLoc)
   })
   .catch(error => {
     console.log(error)

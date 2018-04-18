@@ -7,8 +7,8 @@ import './Locations.css'
 const Locations = () => {
   return (
     <section id="Locations">
-      <Location loc={"Oakland, CA"} />
-      <Location loc={"Barcelona, Esp"} />
+      <Location locSlot={0} />
+      <Location locSlot={1} />
     </section>
   )
 }

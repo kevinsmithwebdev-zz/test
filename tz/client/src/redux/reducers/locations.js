@@ -1,26 +1,35 @@
 const locationsInit = [
 	{
-		locStr: "Oakland, CA",
-		lat: -120,
-		lon: 45,
-		tz: "Pacific",
-		tzOffset: 7
+		locStr: "Oakland, CA, USA",
+		lat: 37.8043637,
+		lon: -122.2711137,
+		dstOffset: 1,
+		rawOffset: -8,
+		timeZoneId: 'America/Los_Angeles',
+		timeZoneName: "Pacific Daylight Time"
 	},
 	{
-		locStr: "Barcelona, Esp",
-		lat: 20,
-		lon: 38,
-		tz: "Europe2",
-		tzOffset: -1
-	},
-
+		locStr: "Barcelona, Spain",
+		lat: 41.3850639,
+		lon: 2.1734035,
+		dstOffset: 1,
+		rawOffset: 1,
+		timeZoneId: 'Europe/Madrid',
+		timeZoneName: "Central European Summer Time"
+	}
 ]
-
 
 
 const locationsReducer = (state = locationsInit, action) => {
 
-	return state;
-};
+	switch (action.type) {
+		case 'SET_LOCATION':
+			let newLocs = [...state]
+			newLocs[action.payload.locSlot] = action.payload.locObj
+			return newLocs
+		default:
+			return state
+	}
+}
 
-export default locationsReducer;
+export default locationsReducer

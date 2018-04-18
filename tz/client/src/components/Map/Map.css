@@ -1,0 +1,18 @@
+#Map {
+  text-align: center;
+  width: 800px;
+  position: relative; }
+  #Map .tz-map {
+    width: 100%;
+    height: auto; }
+  #Map .pos {
+    font-size: 40px;
+    position: absolute; }
+  #Map .pos-0 {
+    color: green;
+    top: 50%;
+    right: 50%; }
+  #Map .pos-1 {
+    color: blue;
+    top: 10px;
+    right: 50px; }
