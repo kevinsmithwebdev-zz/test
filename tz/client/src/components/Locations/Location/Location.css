@@ -1,0 +1,8 @@
+#Location {
+  width: 50%; }
+  #Location .submitBtn {
+    background-color: #99cccc;
+    border: 1px solid #77aaaa;
+    padding: 1px 4px;
+    margin: 0 2px;
+    border-radius: 1px; }
