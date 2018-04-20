@@ -47,8 +47,10 @@ class Location extends React.Component {
     let location = this.props.locations[this.props.locSlot]
     const pretty = (num) => (num).toFixed(2)
 
+    let color = this.props.locSlot?'green':'blue'
+
     return (
-      <div id="Location">
+      <div id="Location" className={`${color}-border`}>
         <span className="label">Location:</span>
         <span>{location.locStr}</span>
         <br />

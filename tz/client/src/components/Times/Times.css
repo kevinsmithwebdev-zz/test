@@ -1,14 +1,18 @@
-#Map {
-  margin: 0 auto;
-  width: 800px;
-  position: relative; }
-  #Map .tz-map {
-    width: 100%;
-    height: auto; }
-  #Map .pos {
-    font-size: 18px;
-    position: absolute; }
-  #Map .pos-0 {
-    color: blue; }
-  #Map .pos-1 {
-    color: green; }
+#Times {
+  font-size: 24px;
+  display: flex;
+  flex-wrap: wrap; }
+  #Times .time-wrapper {
+    flex: 1 0 24%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid darkgray;
+    margin: .5%; }
+  #Times .blue-text {
+    background-color: lightblue;
+    color: darkblue;
+    width: 10em; }
+  #Times .green-text {
+    background-color: lightgreen;
+    color: darkgreen;
+    width: 10em; }

@@ -15,7 +15,6 @@ class Map extends React.Component {
 
   render() {
     const createXStyle = (lat, lon) => {
-      console.log('cxs', lat, lon)
       return {
         top: Y_LEN * ((lat-90)/-180) + Y_ADJ,
         left: X_LEN * ((lon+180)/360) + X_ADJ
