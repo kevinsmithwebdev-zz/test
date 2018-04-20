@@ -52,8 +52,7 @@ const config = {
     new CleanWebpackPlugin(['dist']), //cleans the dist folder
     new ExtractTextPlugin("css/styles.css"),
     new HtmlWebpackPlugin({
-      title: "Webpack Boilerplate 🤖", //Remove or change to change title in index.html
-      template: 'index.ejs'
+      template: 'index.html'
     })
   ]
 };

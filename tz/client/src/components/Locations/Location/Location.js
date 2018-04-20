@@ -16,6 +16,7 @@ class Location extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
     this.updateInputValue = this.updateInputValue.bind(this)
   }
 
@@ -25,8 +26,22 @@ class Location extends React.Component {
   }
 
   updateInputValue(e) {
+    console.log(e.target)
+    if (e.target === 'Enter') {
+      e.preventDefault()
+      e.stopPropagation()
+      this.handleSubmit()
+    }
     this.setState({ newLocStr:  e.target.value })
   }
+
+  handleKeyDown(e) {
+   if (e.key === 'Enter') {
+     e.preventDefault();
+     e.stopPropagation();
+     this.handleSubmit();
+   }
+ }
 
   render() {
     let location = this.props.locations[this.props.locSlot]
@@ -53,7 +68,11 @@ class Location extends React.Component {
         <span>{location.dstOffset?'yes':'no'}</span>
         <form>
           Enter new location:<br />
-          <input type="text" name="location" value={this.state.newLocStr} onChange={this.updateInputValue} />
+          <input type="text" name="location"
+            value={this.state.newLocStr}
+            onChange={this.updateInputValue}
+            onKeyDown={this.handleKeyDown}
+          />
           <span className="submitBtn" onClick={this.handleSubmit}>+</span>
         </form>
       </div>
