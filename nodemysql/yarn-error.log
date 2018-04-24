@@ -1,0 +1,51 @@
+Arguments: 
+  /usr/bin/node /home/ksjazzguitar/.yarn/bin/yarn.js add .env
+
+PATH: 
+  /home/ksjazzguitar/.yarn/bin:/home/ksjazzguitar/.config/yarn/global/node_modules/.bin:/home/ksjazzguitar/bin:/home/ksjazzguitar/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/genymobile/genymotion/tools:/snap/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.10.0
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "nodemysql",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon app.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.16.3",
+      "mysql": "^2.15.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/.env: Request "https://registry.yarnpkg.com/.env" returned a 403
+      at Request.params.callback [as _callback] (/home/ksjazzguitar/.yarn/lib/cli.js:65025:18)
+      at Request.self.callback (/home/ksjazzguitar/.yarn/lib/cli.js:132430:22)
+      at emitTwo (events.js:126:13)
+      at Request.emit (events.js:214:7)
+      at Request.<anonymous> (/home/ksjazzguitar/.yarn/lib/cli.js:133413:10)
+      at emitOne (events.js:116:13)
+      at Request.emit (events.js:211:7)
+      at IncomingMessage.<anonymous> (/home/ksjazzguitar/.yarn/lib/cli.js:133333:12)
+      at Object.onceWrapper (events.js:313:30)
+      at emitNone (events.js:111:20)
