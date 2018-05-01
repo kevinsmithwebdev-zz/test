@@ -44,15 +44,36 @@ class Location extends React.Component {
  }
 
   render() {
-    let location = this.props.locations[this.props.locSlot]
-    const pretty = (num) => (num).toFixed(2)
+    const DAYS = [ 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+    const MONTHS = [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
     let color = this.props.locSlot?'green':'blue'
+
+    let location = this.props.locations[this.props.locSlot]
+
+    const pretty = (num) => (num).toFixed(2)
+    const leadZ = (num) => (num<10)?'0' + num:num
+
+    const offset = (location.rawOffset + location.dstOffset)*60*60*1000
+
+    const lDate = new Date(this.props.zDate + offset)
+
+    const hour = lDate.getHours()
+    const timeStr = (h, m, s) => `${(h+11)%12+1}:${leadZ(m)}:${leadZ(s)} ${((h+24)%24)/12<1?'am':'pm'}`
+
+    let curTimeStr =  DAYS[lDate.getUTCDay()] + ' ' +
+                      lDate.getUTCDate() + '-' +
+                      MONTHS[lDate.getUTCMonth()] + '-' +
+                      lDate.getUTCFullYear() + ' ' +
+                      timeStr(lDate.getUTCHours(), lDate.getUTCMinutes(), lDate.getUTCSeconds())
 
     return (
       <div id="Location" className={`${color}-border`}>
         <span className="label">Location:</span>
         <span>{location.locStr}</span>
+        <br />
+        <span className="label">Current Time:</span>
+        <span>{curTimeStr}</span>
         <br />
         <span className="label">Coords:</span>
         <span>{`${pretty(location.lat)}, ${pretty(location.lon)}`}</span>

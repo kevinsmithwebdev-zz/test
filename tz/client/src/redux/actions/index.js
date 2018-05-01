@@ -1,7 +1,6 @@
 import { API_LOCATION } from '../../common/constants/routes'
 
 export const setLocation = (locSlot, locObj) => {
-  console.log('checkLocation', locSlot, locObj)
   return {
     type: 'SET_LOCATION',
     payload: { locSlot, locObj }
@@ -27,5 +26,11 @@ export function checkLocation(locSlot, str) {
         dispatch(setLocation(locSlot, json))
     })
     .catch(error => console.error(error))
+  }
+}
+
+export const swapLocations = () => {
+  return {
+    type: 'SWAP_LOCATIONS'
   }
 }

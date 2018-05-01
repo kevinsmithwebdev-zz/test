@@ -21,12 +21,14 @@ const locationsInit = [
 
 
 const locationsReducer = (state = locationsInit, action) => {
-
+	let newLocs
 	switch (action.type) {
 		case 'SET_LOCATION':
-			let newLocs = [...state]
+			newLocs = [...state]
 			newLocs[action.payload.locSlot] = action.payload.locObj
 			return newLocs
+		case 'SWAP_LOCATIONS':
+			return [state[1], state[0]]
 		default:
 			return state
 	}
