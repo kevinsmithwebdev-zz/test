@@ -1,6 +1,6 @@
 import { drawTongue } from './froggy.js'
 
-fetch('http://localhost:8080/assets/data/q01.json')
+fetch('http://localhost:8080/static/data/q01.json')
   .then(function(response) {
     console.log(response)
     return response.json();
