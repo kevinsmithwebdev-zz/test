@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /home/ksjazzguitar/.yarn/bin/yarn.js startx
+  /usr/bin/node /home/ksjazzguitar/.yarn/bin/yarn.js start
 
 PATH: 
   /home/ksjazzguitar/.yarn/bin:/home/ksjazzguitar/.config/yarn/global/node_modules/.bin:/home/ksjazzguitar/Android/Sdk/platform-tools:/home/ksjazzguitar/bin:/home/ksjazzguitar/.local/bin:/home/ksjazzguitar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/genymobile/genymotion/tools:/snap/bin
@@ -21,7 +21,7 @@ npm manifest:
     "scripts": {
       "start": "node server",
       "noImplicitAny": true,
-      "startx": "tsc public/js/*.ts && ts-node server"
+      "startx": "ts-node server"
     },
     "dependencies": {
       "@types/express": "^4.11.1",
@@ -796,9 +796,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 2
+  Exit code: 1
   Command: sh
-  Arguments: -c tsc public/js/*.ts && ts-node server
+  Arguments: -c node server
   Directory: /home/ksjazzguitar/programming/test/ns8
   Output:
   
