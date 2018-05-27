@@ -1,0 +1,3 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+200,GET,/api/location/altuna,http://localhost:3000/?location=altuna,"Wed, 18 Apr 2018 19:40:57 GMT",,
+200,GET,/api/location/apple,http://localhost:3000/?location=altuna,"Wed, 18 Apr 2018 19:44:11 GMT",,

@@ -1,0 +1,2 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+200,GET,/api/location/boston,http://localhost:3000/,"Wed, 18 Apr 2018 05:39:22 GMT",,

@@ -1,0 +1,5 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+200,GET,"/api/location/vernon,%20ct",http://localhost:3000/,"Wed, 18 Apr 2018 19:20:11 GMT",,
+200,GET,"/api/location/lima,%20peru",http://localhost:3000/,"Wed, 18 Apr 2018 19:20:24 GMT",,
+200,GET,/api/location/oakland,http://localhost:3000/?location=oakland,"Wed, 18 Apr 2018 19:24:29 GMT",,
+200,GET,/api/location/barcelona,http://localhost:3000/?location=oakland,"Wed, 18 Apr 2018 19:26:29 GMT",,

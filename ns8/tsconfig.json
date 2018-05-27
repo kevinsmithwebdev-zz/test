@@ -4,15 +4,16 @@
     "moduleResolution": "node",
     "pretty": true,
     "sourceMap": true,
+    "declaration": true,
     "target": "es6",
-    "outDir": "./dist",
-    "baseUrl": "./lib",
+    "outDir": "dist",
+    "baseUrl": ".",
     "types": [
       "node"
     ]
   },
   "include": [
-    "lib/**/*.ts"
+    "/**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,0 +1,2 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+304,GET,/api/location/vernon,http://localhost:3000/,"Wed, 18 Apr 2018 19:19:57 GMT",,

@@ -2,4 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  h2= author
+
+  button(onclick='#{something()}') Users
+  button(onclick='#{something()}') Posts
+
+  div#content
+    test
+
+    script.
+      console.log('howdy2')

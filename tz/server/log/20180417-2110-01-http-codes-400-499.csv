@@ -1,0 +1,2 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+400,GET,/api/timezone?lat=401&lon=-19r,,"Wed, 18 Apr 2018 04:19:04 GMT",,

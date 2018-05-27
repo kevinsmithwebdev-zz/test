@@ -1,0 +1,2 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+304,GET,"/api/location/lima,%20peru",http://localhost:3000/?location=altuna,"Wed, 18 Apr 2018 19:45:28 GMT",,

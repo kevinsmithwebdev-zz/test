@@ -1,0 +1,4 @@
+STATUS,METHOD,URL,REFERER,DATE/TIME,"DEV LOG","USR MSG"
+200,GET,/api/location/undefined,http://localhost:3000/?location=oakland,"Wed, 18 Apr 2018 19:30:35 GMT",,
+200,GET,/api/location/mobile,http://localhost:3000/?location=oakland%2C+ca,"Wed, 18 Apr 2018 19:32:02 GMT",,
+200,GET,"/api/location/mobile,%20al",http://localhost:3000/?location=oakland%2C+ca,"Wed, 18 Apr 2018 19:32:11 GMT",,

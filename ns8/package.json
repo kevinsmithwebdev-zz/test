@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server",
+    "noImplicitAny": true,
     "startx": "ts-node server"
   },
   "dependencies": {
