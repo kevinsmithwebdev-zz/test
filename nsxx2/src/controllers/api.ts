@@ -38,7 +38,7 @@ export let getUsers = (req: Request, res: Response) => {
   fetch(API_URL + 'users/1')
   .then(data => data.json())
   .then(users => {
-    res.json({ msg: "users datasasdf", data: users });
+    res.json({ data: users });
   });
 };
 
@@ -46,6 +46,6 @@ export let getPosts = (req: Request, res: Response) => {
   fetch(API_URL + 'posts/1')
   .then(data => data.json())
   .then(users => {
-    res.json({ msg: "users datasasdf", data: users });
+    res.json({ data: users });
   });
 };

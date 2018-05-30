@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import logger from "./util/logger";
 import path from "path";
 
-// Controllers (route handlers)
+// Controllers / route handlers
 import * as homeController from "./controllers/home";
 import * as apiController from "./controllers/api";
 
@@ -21,11 +21,8 @@ app.use(
   express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
 );
 
-/**
- * Primary app routes.
- */
+// app routes.
 app.get("/", homeController.index);
-app.get("/api", apiController.getIndex);
 app.get("/api/users", apiController.getUsers);
 app.get("/api/posts", apiController.getPosts);
 
