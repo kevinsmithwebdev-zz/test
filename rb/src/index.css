@@ -1,0 +1,11 @@
+.recipe {
+  border: 1px solid gray;
+  background-color: lightgray;
+  border-radius: 3px;
+  padding: 3px;
+  margin: 3px;
+}
+
+.recipe-name {
+  font-weight: bold;
+}
