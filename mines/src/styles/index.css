@@ -1,0 +1,35 @@
+#counter-set-field {
+  width: 3em;
+}
+
+.content {
+  width: 450px;
+  text-align: center;
+  background-color: lightgray;
+  border-radius: 3px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.counter-wrapper {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.counter-box {
+  width: 200px;
+  flex: 1;
+  margin: 10px;
+}
+
+.btn-counter {
+  min-width: 45px;
+}
+
+#counter-display {
+  font-size: 250%;
+}
