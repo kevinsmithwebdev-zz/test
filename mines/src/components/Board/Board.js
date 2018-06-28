@@ -1,29 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
-import './Board.css';
+import './Board.css'
 
+import Cell from './Cell/Cell'
 
-class Board extends Component {
+class Board extends React.Component {
 
   renderBoard = (board) => {
-    const renderCell = c => {
-      let v
-      switch (c.value) {
-        case -1:
-          v = 'B'
-          break
-        case 0:
-          v = ' '
-          break
-        default:
-          v = c.value
-      }
-      return <span className='grid-cell' key={c.id}>{v}</span>
-    }
-
     return board.map((r, idx) => (
       <div className='grid-row' key={idx}>
-        { r.map(c => renderCell(c)) }
+        { r.map(c => <Cell key={c.id} data={c} />) }
       </div>
     ))
   }

@@ -1,7 +1,7 @@
 export const GRID_ROWS = 20
 export const GRID_COLS = 30
 
-export const TOT_MINES = 20
+export const TOT_MINES = 60
 
 // let gridx = new Array(GRID_ROWS).fill([...new Array(GRID_COLS).fill({})])
 // let gridx = Array(GRID_ROWS).fill(null).map(
@@ -67,6 +67,20 @@ for (let r=0; r<GRID_ROWS; r++) {
     }
   }
 }
+
+let red = 0
+
+
+for (let r=0; r<GRID_ROWS; r++) {
+  for (let c=0; c<GRID_COLS; c++) {
+
+    if (gridx[r][c].value===-1)
+      red++
+  }
+}
+
+
+console.log('red', red)
 
 console.log(gridx)
 

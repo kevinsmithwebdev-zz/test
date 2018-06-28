@@ -23,3 +23,28 @@
   margin: 0;
   padding: 0;
 }
+
+#Board .grid-cell-1 {
+  color: blue;
+}
+#Board .grid-cell-2 {
+  color: green;
+}
+#Board .grid-cell-3 {
+  color: red;
+}
+#Board .grid-cell-4 {
+  color: purple;
+}
+#Board .grid-cell-5 {
+  color: maroon;
+}
+#Board .grid-cell-6 {
+  color: turquoise;
+}
+#Board .grid-cell-7 {
+  color: black;
+}
+#Board .grid-cell-8 {
+  color: gray;
+}
