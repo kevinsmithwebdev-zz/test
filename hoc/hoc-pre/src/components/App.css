@@ -1,0 +1,34 @@
+.App {
+  margin: 5px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.text-item {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.blog-item {
+  background-color: lightgray;
+}
+
+.news-item {
+  background-color: orange;
+}
+
+.text-title {
+  font-weight: bold;
+}

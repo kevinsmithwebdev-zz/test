@@ -4,16 +4,15 @@ const WRAP_LIMIT = 100
 
 const withTrunc = WrappedComponent => {
   return class newComponent extends React.Component {
-
     handleClick() {
-      console.log(this.props)
+      alert(this.props.text)
     }
 
     render() {
+
+
       let { text } = this.props
-      const handleClick = () => {
-        console.log(this.props)
-      }
+
       text = this.props.text.slice(0, WRAP_LIMIT) + ' ...'
 
       let locHyphen = text.indexOf('-')
@@ -23,8 +22,8 @@ const withTrunc = WrappedComponent => {
 
       let newProps = { ...this.props, text}
       return (
-        <div onClick={handleClick.bind(this)}>
-          <WrappedComponent {...newProps } onClick={handleClick}/>
+        <div onClick={this.handleClick.bind(this)}>
+          <WrappedComponent {...newProps } />
         </div>
       )
     }
