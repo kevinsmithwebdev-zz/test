@@ -1,0 +1,10 @@
+{
+  "login": {
+    "greeting": "Hello!",
+    "howAreYou": "How are you?",
+    "speaking": "I am speaking English."
+  },
+  "user_profile": {
+    "title": "Your Profile"
+  }
+}
